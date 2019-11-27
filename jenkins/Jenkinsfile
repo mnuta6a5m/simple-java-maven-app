@@ -1,9 +1,9 @@
 pipeline {
     agent any 
     stages {
-        stage('First Step') {
+        stage('Code_Checkout') {
             steps {
-                echo 'mvn -B -DskipTests clean package'
+                git 'https://github.com/bajisyed/simple-java-maven-app.git'
             }
         } 
         stage('Build') {
