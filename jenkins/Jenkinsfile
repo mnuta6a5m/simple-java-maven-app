@@ -41,3 +41,4 @@ def notifyFailed(){
     emailext body: '', subject: 'Build Failed', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
 }
     }
+}
