@@ -28,9 +28,9 @@ pipeline {
         stage('Email Notifications') {
 		steps {
 			script {
-				if(currentBuild.result == 'SUCCESS'){
+				if(currentBuild.result == SUCCESS){
 					emailext body: '', subject: 'Build Success', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
-				} else if(currentBuild.result == 'FAILED'){
+				} else if(currentBuild.result == FAILED){
 					emailext body: '', subject: 'Build Failed', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
 				} else {
 					emailext body: '', subject: 'Build Unstable', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
