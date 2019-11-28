@@ -1,9 +1,10 @@
 pipeline {
     agent any
    stages {
-	    emailext body: '', subject: 'Build Started', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
+
         stage('Build') {
             steps {
+	    	emailext body: '', subject: 'Build Started', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'		    
                 sh 'mvn -B -DskipTests clean package'
             }
 
