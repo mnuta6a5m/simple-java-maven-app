@@ -1,6 +1,12 @@
 pipeline {
-    agent any 
-    stages {
+    agent any
+    try {
+notifyStarted()
+   stages {       
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }        
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
@@ -22,4 +28,21 @@ pipeline {
             }
         }
     }
+}
+ 
+notifySuccessful()
+} catch (e) {
+currentBuild.result = "FAILED"
+notifyFailed()
+throw e
+}
+}
+def notifyStarted(){
+    emailext body: '', subject: 'Build Started', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
+}
+def notifySuccessful(){
+    emailext body: '', subject: 'Build Successful', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
+}
+def notifyFailed(){
+    emailext body: '', subject: 'Build Failed', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
 }
