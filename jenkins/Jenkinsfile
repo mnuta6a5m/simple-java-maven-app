@@ -30,6 +30,8 @@ currentBuild.result = "FAILED"
 notifyFailed()
 throw e
 
+    }
+}
 
 def notifyStarted(){
     emailext body: '', subject: 'Build Started', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
@@ -39,6 +41,4 @@ def notifySuccessful(){
 }
 def notifyFailed(){
     emailext body: '', subject: 'Build Failed', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
-}
-    }
 }
