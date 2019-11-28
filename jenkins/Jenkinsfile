@@ -1,10 +1,12 @@
 pipeline {
     agent any
-   stages {              
+   stages {
+	    emailext body: '', subject: 'Build Started', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
+
         }
         stage('Test') {
             steps {
@@ -20,6 +22,20 @@ pipeline {
             steps {
                 sh './jenkins/scripts/deliver.sh'
             }
-        }
+	}
+        stage('Email Notifications') {
+            steps {
+		if(currentBuild.result=='SUCCESS') {
+			emailext body: '', subject: 'Build Success', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
+			
+		} else if(currentBuild.result=='UNSTABLE') {
+			emailext body: '', subject: 'Build Unstable', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
+		} else {
+			emailext body: '', subject: 'Build Failed', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
+		}
+            }
+        }	   
+	   
     }
 }
+		
