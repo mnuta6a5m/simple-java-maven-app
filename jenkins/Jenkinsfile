@@ -27,7 +27,15 @@ pipeline {
 	}
         stage('Email Notifications') {
 		steps {
-			emailext body: '', subject: 'Build Success', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
+			script {
+				if(currentBuild.result == 'SUCCESS'){
+					emailext body: '', subject: 'Build Success', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
+				} else if(currentBuild.result == 'FAILED'){
+					emailext body: '', subject: 'Build Failed', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
+				} else {
+					emailext body: '', subject: 'Build Unstable', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
+				}
+			}
 		}
         }	   
 	   
