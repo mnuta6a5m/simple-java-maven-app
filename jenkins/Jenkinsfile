@@ -29,11 +29,11 @@ pipeline {
 		steps {
 			script {
 				if(currentBuild.currentResult == 'SUCCESS'){
-					emailext body: '', subject: '${currentBuild.projectName} Build ${currentBuild.id} Success', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
+					emailext body: '', subject: 'Build Success', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
 				} else if(currentBuild.currentResult == 'FAILURE'){
-					emailext body: '', subject: '${currentBuild.projectName} Build ${currentBuild.id} Failed', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'			
+					emailext body: '', subject: 'Build Failed', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'			
 				} else {
-					emailext body: '', subject: '${currentBuild.projectName} Build ${currentBuild.id} Unstable', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'			
+					emailext body: '', subject: 'Build Unstable', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'			
 
 				}
 			}
