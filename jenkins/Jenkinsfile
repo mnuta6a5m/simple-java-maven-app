@@ -5,7 +5,7 @@ pipeline {
 
         stage('Build') {
             steps {
-	    	emailext body: '', subject: 'Build Started', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'		    
+	    	emailext body: '', subject: 'Build Started', to: 'manjunath.ramareddy@mindtree.com'		    
                 sh 'mvn -B -DskipTests clean package'
             }
 
@@ -29,11 +29,11 @@ pipeline {
 		steps {
 			script {
 				if(currentBuild.currentResult == 'SUCCESS'){
-					emailext body: '', subject: 'Build Success', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'
+					emailext body: '', subject: 'Build Success', to: 'manjunath.ramareddy@mindtree.com'
 				} else if(currentBuild.currentResult == 'FAILURE'){
-					emailext body: '', subject: 'Build Failed', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'			
+					emailext body: '', subject: 'Build Failed', to: 'manjunath.ramareddy@mindtree.com'			
 				} else {
-					emailext body: '', subject: 'Build Unstable', to: 'manjunath.ramareddy@mindtree.com, baji.syed@mindtree.com'			
+					emailext body: '', subject: 'Build Unstable', to: 'manjunath.ramareddy@mindtree.com'			
 
 				}
 			}
